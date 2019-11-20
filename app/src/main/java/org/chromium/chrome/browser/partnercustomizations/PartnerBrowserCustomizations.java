@@ -73,7 +73,7 @@ public class PartnerBrowserCustomizations {
                             sProviderAuthority, 0);
             if (providerInfo == null) return false;
 
-            if ((providerInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0
+            if ((providerInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0
                     && !sIgnoreBrowserProviderSystemPackageCheck) {
                 Log.w(TAG,
                         "Browser Customizations content provider package, "
@@ -243,7 +243,7 @@ public class PartnerBrowserCustomizations {
             protected Void doInBackground() {
                 try {
                     boolean systemOrPreStable =
-                            (context.getApplicationInfo().flags & ApplicationInfo.FLAG_SYSTEM) == 1
+                            (context.getApplicationInfo().flags & ApplicationInfo.FLAG_SYSTEM) != 1
                             || !ChromeVersionInfo.isStableBuild();
                     if (!systemOrPreStable) {
                         // Only allow partner customization if this browser is a system package, or
